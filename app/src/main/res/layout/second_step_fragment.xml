@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
-        android:id="@+id/howManySpendText"
+        android:id="@+id/onWhatText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="on what?"
@@ -13,6 +13,7 @@
         android:textAlignment="center" />
 
     <ListView
+        android:id="@+id/categoriesList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="#f00"

@@ -16,9 +16,15 @@ class FirstStepFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         nextStepButton.setOnClickListener { activity.supportFragmentManager.inTransaction {
-            replace(R.id.main_fragment, this@FirstStepFragment)
+            val secondFragment = SecondStepFragment().withArgs {
+                putInt("price", priceEditBox.text.toString().toInt())
+            }
+            replace(R.id.main_fragment, secondFragment)
             addToBackStack(null)
             }
         }
     }
 }
+
+inline fun <T: Fragment> T.withArgs(argsBuilder: Bundle.() -> Unit): T =
+        this.apply { arguments = Bundle().apply(argsBuilder) }

@@ -13,7 +13,6 @@ class MainActivity : FragmentActivity() {
         setContentView(activity_main)
         supportFragmentManager.inTransaction {
             replace(R.id.main_fragment, FirstStepFragment())
-            addToBackStack(null)
         }
     }
 }
