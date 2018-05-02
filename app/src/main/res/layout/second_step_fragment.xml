@@ -12,12 +12,11 @@
         android:textSize="32sp"
         android:textAlignment="center" />
 
-    <ListView
-        android:id="@+id/categoriesList"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/categoriesRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:divider="#f00"
-        android:dividerHeight="1dp">
-    </ListView>
+        android:scrollbars="vertical">
+    </android.support.v7.widget.RecyclerView>
 </LinearLayout>
 

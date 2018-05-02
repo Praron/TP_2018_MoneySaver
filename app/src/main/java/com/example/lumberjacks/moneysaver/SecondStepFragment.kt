@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.first_step_fragment.*
 import kotlinx.android.synthetic.main.second_step_fragment.*
+import android.support.v7.widget.LinearLayoutManager
 
 class SecondStepFragment : Fragment() {
 
@@ -20,7 +21,10 @@ class SecondStepFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         onWhatText.text = arguments.getInt("price").toString()
 
-        val adapter = ArrayAdapter(activity, R.layout.categories_list_item, arrayOf("Food", "Clothes", "Other"))
-        categoriesList.adapter = adapter
+//        val adapter = ArrayAdapter(activity, R.layout.categories_list_item, arrayOf("Food", "Clothes", "Other"))
+//        categoriesList.adapter = adapter
+        val linearLayoutManager = LinearLayoutManager(activity)
+//        categoriesRecyclerView.layoutManager = linearLayoutManager
+
     }
 }
