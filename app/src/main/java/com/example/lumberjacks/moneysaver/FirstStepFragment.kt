@@ -39,8 +39,7 @@ class FirstStepFragment : Fragment() {
         builder.setMessage("Warning")
                 .setCancelable(false)
                 .setTitle(message.toString())
-                .setNegativeButton("Ok", DialogInterface.OnClickListener { dialog, whichButton ->
-                })
+                .setNegativeButton("Ok", { _, _ -> })
         val dialog = builder.create()
         dialog.show()
     }

@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import kotlinx.android.synthetic.main.second_step_fragment.*
 
 class SecondStepFragment : Fragment() {
@@ -17,7 +18,8 @@ class SecondStepFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        onWhatText.text = arguments!!.getInt("price").toString()
+        val price = arguments!!.getInt("price")
+        onWhatText.text = price.toString()
 
         val linearLayoutManager = LinearLayoutManager(activity)
 
@@ -28,7 +30,15 @@ class SecondStepFragment : Fragment() {
                     Category("Clothes"),
                     Category("Other", "different shit")
             )
-            , {clickedCategory -> toast("${clickedCategory.name} Clicked")})
+            , {clickedCategory -> saveSpendings(clickedCategory, price)})}
         }
+
+    private fun saveSpendings(clickedCategory: Category, price: Int) {
+        val spending = Spending(clickedCategory.name, price)
+        spending.save(this.context!!)
+        val toast = Toast.makeText(this.context,
+                "${clickedCategory.name} - $price SAVED",
+                Toast.LENGTH_SHORT)
+        toast.show()
     }
 }
