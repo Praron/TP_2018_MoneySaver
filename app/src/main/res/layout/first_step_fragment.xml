@@ -7,14 +7,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
-        android:id="@+id/howManySpendText"
+        android:id="@+id/how_many_spend_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="How many I spend"
         android:textSize="32sp"
-        android:textAlignment="center" />
+        android:textAlignment="center"/>
     <EditText
-        android:id="@+id/priceEditBox"
+        android:id="@+id/price_edit_box"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
@@ -22,7 +22,7 @@
         android:textSize="64sp"
         android:textAlignment="center"/>
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/nextStepButton"
+        android:id="@+id/next_step_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:backgroundTint="@color/accent"

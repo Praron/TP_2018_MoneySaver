@@ -17,14 +17,13 @@ class FirstStepFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        nextStepButton.setOnClickListener {
-            if (priceEditBox.text.isEmpty()) {
+        next_step_button.setOnClickListener {
+            if (price_edit_box.text.isEmpty()) {
                 showWarning("Enter price")
             } else {
                 activity?.supportFragmentManager?.inTransaction {
-
                     val secondFragment = SecondStepFragment().withArgs {
-                        putInt("price", priceEditBox.text.toString().toInt())
+                        putInt("price", price_edit_box.text.toString().toInt())
                     }
                     replace(R.id.main_fragment, secondFragment)
                     addToBackStack(null)
