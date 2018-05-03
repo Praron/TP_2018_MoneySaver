@@ -4,14 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.lumberjacks.moneysaver.MainActivity">
-
+    tools:context="com.example.lumberjacks.moneysaver.MainActivity"
+    android:background="@color/background">
     <FrameLayout
         android:id="@+id/main_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </FrameLayout>
-        <!--android:name="com.example.lumberjacks.moneysaver.FirstStepFragment"-->
-
 
 </android.support.constraint.ConstraintLayout>

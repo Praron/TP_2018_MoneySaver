@@ -19,10 +19,16 @@ class SecondStepFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         onWhatText.text = arguments!!.getInt("price").toString()
 
-//        val adapter = ArrayAdapter(activity, R.layout.categories_list_item, arrayOf("Food", "Clothes", "Other"))
-//        categoriesList.adapter = adapter
         val linearLayoutManager = LinearLayoutManager(activity)
-        categoriesRecyclerView.layoutManager = linearLayoutManager
 
+        categoriesRecyclerView.apply {
+            layoutManager = linearLayoutManager
+            adapter = CategoryRecyclerAdapter(arrayListOf(
+                    Category("Food", "food"),
+                    Category("Clothes"),
+                    Category("Other", "different shit")
+            )
+            , {clickedCategory -> toast("${clickedCategory.name} Clicked")})
+        }
     }
 }

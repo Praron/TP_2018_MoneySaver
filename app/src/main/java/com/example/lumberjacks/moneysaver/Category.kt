@@ -21,10 +21,10 @@ class CategoryRecyclerAdapter(val categories: List<Category>, val categoryClick:
 
     override fun getItemCount(): Int = categories.size
 
-    inner class CategoryViewHolder(itemView: View, itemClick: (Category) -> Unit) : RecyclerView.ViewHolder(itemView) {
+    inner class CategoryViewHolder(itemView: View, val itemClick: (Category) -> Unit) : RecyclerView.ViewHolder(itemView) {
         fun bindCategory(category: Category) {
             with(category) {
-                itemView.setOnClickListener { categoryClick(this) }
+                itemView.setOnClickListener { itemClick(this) }
                 itemView.category_name.text = name
                 itemView.category_description.text = description
             }
