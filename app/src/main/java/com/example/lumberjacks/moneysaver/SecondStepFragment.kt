@@ -21,7 +21,6 @@ class SecondStepFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.second_step_fragment, container, false)
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -45,12 +44,11 @@ class SecondStepFragment : Fragment() {
     }
 
     private fun createNewCategory() {
-        val dialogView = LayoutInflater.from(activity).inflate(R.layout.add_category_dialog, null)
+        val dialogView = View.inflate(context, R.layout.add_category_dialog, null)
         val alertDialogBuilderUserInput = AlertDialog.Builder(activity as Context).apply {
             setView(dialogView)
             setCancelable(true)
             setPositiveButton("Create") { dialogBox, id ->
-                dialogBox.dismiss()
                 val newCategoryName = category_name_input.text.toString()
                 val newCategoryDescription = category_description_input.text.toString()
             }
