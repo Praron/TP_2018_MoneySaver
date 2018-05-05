@@ -21,11 +21,12 @@
         android:hint="enter price"
         android:textSize="64sp"
         android:textAlignment="center"/>
-    <android.support.v7.widget.AppCompatButton
+    <Button
         android:id="@+id/next_step_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:backgroundTint="@color/accent"
+        android:theme="@style/MyButton"
+        android:textColor="@color/buttonTextColor"
         android:text="Next"/>
 </LinearLayout>
 

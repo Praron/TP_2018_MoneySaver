@@ -14,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import kotlinx.android.synthetic.main.add_category_dialog.*
+import kotlinx.android.synthetic.main.add_category_dialog.view.*
 import kotlinx.android.synthetic.main.second_step_fragment.*
 
 
@@ -49,8 +50,8 @@ class SecondStepFragment : Fragment() {
             setView(dialogView)
             setCancelable(true)
             setPositiveButton("Create") { dialogBox, id ->
-                val newCategoryName = category_name_input.text.toString()
-                val newCategoryDescription = category_description_input.text.toString()
+                val newCategoryName = dialogView.category_name_input.text.toString()
+                val newCategoryDescription = dialogView.category_description_input.text.toString()
             }
             setNegativeButton("Cancel") { dialogBox, id -> dialogBox.cancel() }
         }
