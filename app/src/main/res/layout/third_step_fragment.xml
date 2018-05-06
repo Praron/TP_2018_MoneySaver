@@ -33,7 +33,7 @@
             android:id="@+id/other_spending_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:theme="@style/FlatButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:text="Make other spending"/>
         <Button
             android:id="@+id/statistics_button"
