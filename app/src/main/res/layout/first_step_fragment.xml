@@ -5,6 +5,7 @@
     android:id="@+id/first_step_fragment"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:layout_marginTop="50dp"
     android:layout_height="match_parent">
     <TextView
         android:id="@+id/how_many_spend_text"
@@ -25,7 +26,7 @@
         android:id="@+id/next_step_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/MyButton"
+        android:theme="@style/RaisedButton"
         android:textColor="@color/buttonTextColor"
         android:text="Next"/>
 </LinearLayout>

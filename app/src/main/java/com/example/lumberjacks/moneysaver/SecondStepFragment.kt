@@ -8,6 +8,7 @@ import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.DividerItemDecoration.VERTICAL
 import android.support.v7.widget.LinearLayoutManager
 import android.text.Editable
+import android.text.TextUtils.replace
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
@@ -16,32 +17,35 @@ import android.widget.EditText
 import kotlinx.android.synthetic.main.add_category_dialog.*
 import kotlinx.android.synthetic.main.add_category_dialog.view.*
 import kotlinx.android.synthetic.main.second_step_fragment.*
+import kotlinx.android.synthetic.main.second_step_fragment.view.*
 
 
 class SecondStepFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.second_step_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        val linearLayoutManager = LinearLayoutManager(activity)
-
-        categories_recycler_view.addItemDecoration(DividerItemDecoration(activity!!.applicationContext, VERTICAL))
-
-        categories_recycler_view.apply {
-            layoutManager = linearLayoutManager
-            adapter = CategoryRecyclerAdapter(arrayListOf(
-                    Category("Food", "food"),
-                    Category("Clothes"),
-                    Category("Other", "different shit")
-            )
-            , {clickedCategory -> toast("${clickedCategory.name} Clicked")})
+        return inflater.inflate(R.layout.second_step_fragment, container, false).apply {
+            categories_recycler_view.addItemDecoration(DividerItemDecoration(activity!!.applicationContext, VERTICAL))
+            categories_recycler_view.apply {
+                layoutManager = LinearLayoutManager(activity)
+                adapter = CategoryRecyclerAdapter(arrayListOf(
+                        Category("Food", "food"),
+                        Category("Clothes"),
+                        Category("Other", "different shit")
+                        )
+                        , {clickedCategory ->
+                            toast("${clickedCategory.name} clicked")
+                            activity?.supportFragmentManager?.inTransaction {
+                                val thirdFragment = ThirdStepFragment().withArgs {
+                                    putInt("price", arguments!!.getInt("price"))
+                                }
+                                replace(R.id.main_fragment, thirdFragment)
+                                addToBackStack(null)
+                            }
+                        }
+                )
+            }
+            add_category_button.setOnClickListener {createNewCategory()}
         }
-
-        add_category_button.setOnClickListener {createNewCategory()}
     }
 
     private fun createNewCategory() {

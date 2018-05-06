@@ -30,10 +30,16 @@
             android:textAlignment="center"
             android:textSize="40sp"/>
         <Button
-            android:id="@+id/next_step_button"
+            android:id="@+id/other_spending_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:theme="@style/MyButton"
+            android:theme="@style/FlatButton"
+            android:text="Make other spending"/>
+        <Button
+            android:id="@+id/statistics_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/RaisedButton"
             android:textColor="@color/buttonTextColor"
             android:text="Make other spending"/>
     </LinearLayout>
