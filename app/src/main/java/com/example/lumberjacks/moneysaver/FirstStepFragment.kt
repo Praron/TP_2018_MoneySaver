@@ -21,9 +21,10 @@ class FirstStepFragment : Fragment() {
                     activity?.supportFragmentManager?.inTransaction {
                         val secondFragment = SecondStepFragment().withArgs {
                             putInt("price", price_edit_box.text.toString().toInt())
+//                            price_edit_box.text = null
                         }
                         replace(R.id.main_fragment, secondFragment)
-                        addToBackStack(null)
+                        addToBackStack("first_step")
                     }
                 }
             }

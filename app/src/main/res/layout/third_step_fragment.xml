@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.design.widget.CoordinatorLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -37,31 +37,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </ListView>
+    </LinearLayout>
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="32dp">
+        <Button
+            android:id="@+id/other_spending_button"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="end"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/other_spending_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:text="Make other spending"/>
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:text="Make other spending"/>
 
-            <Button
-                android:id="@+id/statistics_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="32dp"
-                android:text="Statistics"
-                android:textColor="@color/buttonTextColor"
-                android:theme="@style/RaisedButton" />
-        </LinearLayout>
+        <Button
+            android:id="@+id/statistics_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:text="Statistics"
+            android:textColor="@color/buttonTextColor"
+            android:theme="@style/RaisedButton" />
     </LinearLayout>
 
 
 
-</android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>

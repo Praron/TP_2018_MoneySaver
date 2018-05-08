@@ -3,6 +3,7 @@ package com.example.lumberjacks.moneysaver
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,10 +21,20 @@ class ThirdStepFragment : Fragment() {
                     arrayListOf("this day", "this week", "this month", "this year"))
             adapter.setDropDownViewResource(R.layout.spinner_item)
             total_spent_spinner.adapter = adapter
-            total_spent_spinner.setSelection(2)
+            total_spent_spinner.setSelection(2)  // TODO: Dude, we need to make something with this ugly Pairs and other, I think.
+            // )
 
             val data = arrayListOf(Pair("Food", 3200), Pair("Clothes", 1100), Pair("Electronics", 500), Pair("Other", 30))
             top_spends_list.adapter = TopSpentAdapter(inflater, data)
+
+            other_spending_button.setOnClickListener {
+                activity?.supportFragmentManager?.apply {
+                    popBackStack("first_step", FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                    inTransaction {
+                        replace(R.id.main_fragment, FirstStepFragment())
+                    }
+                }
+            }
         }
     }
 
