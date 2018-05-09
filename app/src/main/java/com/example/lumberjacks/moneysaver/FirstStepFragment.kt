@@ -21,7 +21,6 @@ class FirstStepFragment : Fragment() {
                     activity?.supportFragmentManager?.inTransaction {
                         val secondFragment = SecondStepFragment().withArgs {
                             putInt("price", price_edit_box.text.toString().toInt())
-//                            price_edit_box.text = null
                         }
                         replace(R.id.main_fragment, secondFragment)
                         addToBackStack("first_step")
@@ -32,12 +31,12 @@ class FirstStepFragment : Fragment() {
     }
 
     private fun showWarning(message: Any) {
-        val builder = AlertDialog.Builder(activity)
-        builder.setMessage("Warning")
-                .setCancelable(false)
-                .setTitle(message.toString())
-                .setNegativeButton("Ok", DialogInterface.OnClickListener { dialog, whichButton ->
-                })
+        val builder = AlertDialog.Builder(activity).apply {
+            setMessage("Warning")
+            setCancelable(false)
+            setTitle(message.toString())
+            setNegativeButton("Ok", {_, _ -> })
+        }
         val dialog = builder.create()
         dialog.show()
     }
