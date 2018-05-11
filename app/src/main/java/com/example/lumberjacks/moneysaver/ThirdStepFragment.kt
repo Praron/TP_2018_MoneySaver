@@ -35,6 +35,15 @@ class ThirdStepFragment : Fragment() {
                     }
                 }
             }
+
+            statistics_button.setOnClickListener {
+                activity?.supportFragmentManager?.apply {
+                    inTransaction {
+                        replace(R.id.main_fragment, StatisticsFragment())
+                        addToBackStack(null)
+                    }
+                }
+            }
         }
     }
 

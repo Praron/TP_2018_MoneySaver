@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/spending_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Slug"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="#555555"
+        android:layout_alignParentStart="true"
+        />
+    <TextView
+        android:id="@+id/spending_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Slug"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textColor="#555555"
+        android:layout_below="@id/spending_name"
+        />
+
+    <TextView
+        android:id="@+id/spending_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Slug"
+        android:textSize="32sp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:textAlignment="textEnd"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        />
+
+</RelativeLayout>
+
+
