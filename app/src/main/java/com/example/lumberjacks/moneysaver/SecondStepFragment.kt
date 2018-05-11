@@ -24,8 +24,8 @@ class SecondStepFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.second_step_fragment, container, false).apply {
-            categories_recycler_view.addItemDecoration(DividerItemDecoration(activity!!.applicationContext, VERTICAL))
             categories_recycler_view.apply {
+                addItemDecoration(DividerItemDecoration(activity!!.applicationContext, VERTICAL))
                 layoutManager = LinearLayoutManager(activity)
                 adapter = CategoryRecyclerAdapter(arrayListOf(
                         Category("Food", "food"),

@@ -6,6 +6,7 @@
         android:id="@+id/spending_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8sp"
         android:text="Slug"
         android:textAlignment="center"
         android:textSize="32sp"
