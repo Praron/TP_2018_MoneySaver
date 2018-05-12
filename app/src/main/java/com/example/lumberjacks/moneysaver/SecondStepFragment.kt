@@ -18,12 +18,14 @@ import kotlinx.android.synthetic.main.add_category_dialog.*
 import kotlinx.android.synthetic.main.add_category_dialog.view.*
 import kotlinx.android.synthetic.main.second_step_fragment.*
 import kotlinx.android.synthetic.main.second_step_fragment.view.*
+import org.jetbrains.anko.db.insert
 
 
 class SecondStepFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.second_step_fragment, container, false).apply {
+            val price = arguments!!.getInt("price");
             categories_recycler_view.apply {
                 addItemDecoration(DividerItemDecoration(activity!!.applicationContext, VERTICAL))
                 layoutManager = LinearLayoutManager(activity)
@@ -34,6 +36,7 @@ class SecondStepFragment : Fragment() {
                         )
                         , {clickedCategory ->
                             toast("${clickedCategory.name} clicked")
+                            saveSpendingInCategory(clickedCategory, price)
                             activity?.supportFragmentManager?.inTransaction {
                                 val thirdFragment = ThirdStepFragment().withArgs {
                                     putInt("price", arguments!!.getInt("price"))
@@ -45,6 +48,15 @@ class SecondStepFragment : Fragment() {
                 )
             }
             add_category_button.setOnClickListener {createNewCategory()}
+        }
+    }
+
+    private fun saveSpendingInCategory(clickedCategory: Category, price: Int) {
+        val database = DatabaseOpenHelper(this.context!!)
+        database.use{
+            insert("Spendings",
+                    "price" to price,
+            )
         }
     }
 
