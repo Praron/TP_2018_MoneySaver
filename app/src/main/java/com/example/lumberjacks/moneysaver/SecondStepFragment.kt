@@ -53,9 +53,9 @@ class SecondStepFragment : Fragment() {
 
     private fun saveSpendingInCategory(clickedCategory: Category, price: Int) {
         val database = DatabaseOpenHelper(this.context!!)
-        database.use{
+        activity!!.database.use{
             insert("Spendings",
-                    "price" to price,
+                    "price" to price
             )
         }
     }
