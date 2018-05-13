@@ -1,6 +1,7 @@
 package com.example.lumberjacks.moneysaver
 
 import android.content.Context
+import android.database.Cursor
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
@@ -18,7 +19,10 @@ import kotlinx.android.synthetic.main.add_category_dialog.*
 import kotlinx.android.synthetic.main.add_category_dialog.view.*
 import kotlinx.android.synthetic.main.second_step_fragment.*
 import kotlinx.android.synthetic.main.second_step_fragment.view.*
+import org.jetbrains.anko.db.MapRowParser
 import org.jetbrains.anko.db.insert
+import org.jetbrains.anko.db.parseList
+import org.jetbrains.anko.db.select
 
 
 class SecondStepFragment : Fragment() {
@@ -29,11 +33,13 @@ class SecondStepFragment : Fragment() {
             categories_recycler_view.apply {
                 addItemDecoration(DividerItemDecoration(activity!!.applicationContext, VERTICAL))
                 layoutManager = LinearLayoutManager(activity)
-                adapter = CategoryRecyclerAdapter(arrayListOf(
-                        Category("Food", "food"),
-                        Category("Clothes"),
-                        Category("Other", "different shit")
-                        )
+                adapter = CategoryRecyclerAdapter(
+                        getCategoriesArray()
+//                        arrayListOf(
+//                        Category("Food", "food"),
+//                        Category("Clothes"),
+//                        Category("Other", "different shit")
+//                        )
                         , {clickedCategory ->
                             toast("${clickedCategory.name} clicked")
                             saveSpendingInCategory(clickedCategory, price)
@@ -51,8 +57,24 @@ class SecondStepFragment : Fragment() {
         }
     }
 
+    private fun getCategoriesArray() :ArrayList<Category>{
+        val list = ArrayList<Category>()
+        val dbList = activity!!.database.use{
+            select("Categories").parseOpt(object : MapRowParser<Category> {
+                override fun parseRow(columns: Map<String, Any?>): Category {
+
+                    val name = columns.getValue("name") as String
+                    val description = "kek"
+
+                    return Category(name = name, description = description)
+                }
+            })
+        }
+
+        return list
+    }
+
     private fun saveSpendingInCategory(clickedCategory: Category, price: Int) {
-        val database = DatabaseOpenHelper(this.context!!)
         activity!!.database.use{
             insert("Spendings",
                     "price" to price
