@@ -22,12 +22,13 @@ class DatabaseOpenHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MyDatabas
         db.createTable(
                 "Spendings", true,
                 "id" to INTEGER + PRIMARY_KEY + UNIQUE,
-                "amount" to INTEGER
-//                "category_id" to INTEGER
+                "amount" to INTEGER,
+                "category_id" to INTEGER
         )
         db.createTable("Categories", true,
                 "id" to INTEGER + PRIMARY_KEY + UNIQUE,
-                "name" to TEXT
+                "name" to TEXT,
+                "description" to TEXT
         )
     }
 

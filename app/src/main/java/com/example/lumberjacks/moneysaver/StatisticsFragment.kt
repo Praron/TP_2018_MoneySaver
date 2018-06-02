@@ -23,13 +23,13 @@ class StatisticsFragment : Fragment() {
                 addItemDecoration(DividerItemDecoration(activity!!.applicationContext, DividerItemDecoration.VERTICAL))
                 layoutManager = LinearLayoutManager(activity)
                 adapter = SpendingsAdapter(arrayListOf(
-                        Spending(Category("Food", "food"), 50),
-                        Spending(Category("Food", "food"), 100),
-                        Spending(Category("Food", "food"), 120),
-                        Spending(Category("Clothes"), 1500),
-                        Spending(Category("Food", "food"), 500),
-                        Spending(Category("Clothes"), 500),
-                        Spending(Category("Other", "different shit"), 1000)
+                        Spending(Category(1,"Food", "food"), 50),
+                        Spending(Category(2,"Food", "food"), 100),
+                        Spending(Category(3,"Food", "food"), 120),
+                        Spending(Category(4,"Clothes"), 1500),
+                        Spending(Category(5,"Food", "food"), 500),
+                        Spending(Category(6,"Clothes"), 500),
+                        Spending(Category(7,"Other", "different shit"), 1000)
                 )
                         , { }
                 )

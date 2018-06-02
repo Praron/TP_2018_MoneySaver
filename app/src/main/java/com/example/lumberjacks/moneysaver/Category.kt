@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.categories_list_item.view.*
 
-data class Category (val name: String, val description : String = "")
+data class Category (val id: Long, val name: String, val description : String = "")
 
 
 class CategoryRecyclerAdapter(val categories: List<Category>, val categoryClick: (Category) -> Unit) : RecyclerView.Adapter<CategoryRecyclerAdapter.CategoryViewHolder>() {
