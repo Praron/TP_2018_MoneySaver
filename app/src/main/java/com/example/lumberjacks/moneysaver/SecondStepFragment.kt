@@ -35,49 +35,50 @@ class SecondStepFragment : Fragment() {
                 layoutManager = LinearLayoutManager(activity)
                 adapter = CategoryRecyclerAdapter(
                         getCategoriesArray()
-//                        arrayListOf(
-//                        Category("Food", "food"),
-//                        Category("Clothes"),
-//                        Category("Other", "different shit")
-//                        )
-                        , {clickedCategory ->
-                            toast("${clickedCategory.name} clicked")
-                            saveSpendingInCategory(clickedCategory, price)
-                            activity?.supportFragmentManager?.inTransaction {
-                                val thirdFragment = ThirdStepFragment().withArgs {
-                                    putInt("price", arguments!!.getInt("price"))
-                                }
-                                replace(R.id.main_fragment, thirdFragment)
-                                addToBackStack(null)
-                            }
+                        , { clickedCategory ->
+                    toast("${clickedCategory.name} clicked")
+                    saveSpendingInCategory(clickedCategory, price)
+                    activity?.supportFragmentManager?.inTransaction {
+                        val thirdFragment = ThirdStepFragment().withArgs {
+                            putInt("price", arguments!!.getInt("price"))
                         }
+                        replace(R.id.main_fragment, thirdFragment)
+                        addToBackStack(null)
+                    }
+                }
                 )
             }
             add_category_button.setOnClickListener {createNewCategory()}
         }
     }
 
-    private fun getCategoriesArray() :ArrayList<Category>{
-        val list = ArrayList<Category>()
+    private fun getCategoriesArray() : List<Category> {
         val dbList = activity!!.database.use{
-            select("Categories").parseOpt(object : MapRowParser<Category> {
+            select("Categories").parseList(object : MapRowParser<Category> {
                 override fun parseRow(columns: Map<String, Any?>): Category {
 
+                    val id = columns.getValue("id") as Long
                     val name = columns.getValue("name") as String
-                    val description = "kek"
+                    var description = ""
+                    if (columns.getValue("description") != null){
+                        description = columns.getValue("description") as String
+                    }
 
-                    return Category(name = name, description = description)
+
+
+
+                    return Category(id=id, name = name, description = description)
                 }
             })
         }
-
-        return list
+        return dbList
     }
 
     private fun saveSpendingInCategory(clickedCategory: Category, price: Int) {
         activity!!.database.use{
             insert("Spendings",
-                    "price" to price
+                    "price" to price,
+                    "category_id" to clickedCategory.id
             )
         }
     }
@@ -90,6 +91,30 @@ class SecondStepFragment : Fragment() {
             setPositiveButton("Create") { dialogBox, id ->
                 val newCategoryName = dialogView.category_name_input.text.toString()
                 val newCategoryDescription = dialogView.category_description_input.text.toString()
+                activity!!.database.use{
+                    insert("Categories",
+                            "name" to newCategoryName,
+                            "description" to newCategoryDescription
+                            )
+                }
+                categories_recycler_view.apply {
+                    addItemDecoration(DividerItemDecoration(activity!!.applicationContext, VERTICAL))
+                    layoutManager = LinearLayoutManager(activity)
+                    adapter = CategoryRecyclerAdapter(
+                            getCategoriesArray()
+                            , { clickedCategory ->
+                        toast("${clickedCategory.name} clicked")
+                        saveSpendingInCategory(clickedCategory, arguments!!.getInt("price"))
+                        activity?.supportFragmentManager?.inTransaction {
+                            val thirdFragment = ThirdStepFragment().withArgs {
+                                putInt("price", arguments!!.getInt("price"))
+                            }
+                            replace(R.id.main_fragment, thirdFragment)
+                            addToBackStack(null)
+                        }
+                    }
+                    )
+                }
             }
             setNegativeButton("Cancel") { dialogBox, id -> dialogBox.cancel() }
         }
