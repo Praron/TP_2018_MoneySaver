@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MoneySaver</string>
+    <string name="enter_price">Введите цену</string>
+    <string name="accept_warning">ОК</string>
+    <string name="create_button_text">Создать</string>
+    <string name="negative_button_text">Отменить</string>
+</resources>

@@ -16,7 +16,7 @@ class FirstStepFragment : Fragment() {
         return inflater.inflate(R.layout.first_step_fragment, container, false).apply {
             this.next_step_button.setOnClickListener {
                 if (price_edit_box.text.isEmpty()) {
-                    showWarning("Enter price")
+                    showWarning(R.string.enter_price)
                 } else {
                     activity?.supportFragmentManager?.inTransaction {
                         val secondFragment = SecondStepFragment().withArgs {
@@ -35,7 +35,7 @@ class FirstStepFragment : Fragment() {
             setMessage("Warning")
             setCancelable(false)
             setTitle(message.toString())
-            setNegativeButton("Ok", {_, _ -> })
+            setNegativeButton(R.string.accept_warning, {_, _ -> })
         }
         val dialog = builder.create()
         dialog.show()

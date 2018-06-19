@@ -85,7 +85,7 @@ class SecondStepFragment : Fragment() {
         val alertDialogBuilderUserInput = AlertDialog.Builder(activity as Context).apply {
             setView(dialogView)
             setCancelable(true)
-            setPositiveButton("Create") { dialogBox, id ->
+            setPositiveButton(R.string.create_button_text) { dialogBox, id ->
                 val newCategoryName = dialogView.category_name_input.text.toString()
                 val newCategoryDescription = dialogView.category_description_input.text.toString()
                 activity!!.database.use{
@@ -113,7 +113,7 @@ class SecondStepFragment : Fragment() {
                     )
                 }
             }
-            setNegativeButton("Cancel") { dialogBox, id -> dialogBox.cancel() }
+            setNegativeButton(R.string.negative_button_text) { dialogBox, id -> dialogBox.cancel() }
         }
 
         val alertDialogAndroid = alertDialogBuilderUserInput.create().apply {
