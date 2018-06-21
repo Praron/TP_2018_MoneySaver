@@ -51,14 +51,14 @@ class DBManager(var dbHelper: DatabaseOpenHelper = DatabaseOpenHelper(MainActivi
                 })
     }
 
-    override fun getAllSpendingByCategoryByTime(byTime: DateTypes): List<Pair<String, Double>> = dbHelper.use {
+    override fun getAllSpendingByCategoryByTime(byTime: DateTypes): List<Pair<String, Long>> = dbHelper.use {
             select("spendings as s join categories as c on (s.category_id = c.id)",
-                    "name, sum('price') as 'Total'")
+                    "name, sum(price) as 'Total'")
                     .whereArgs("spend_datetime BETWEEN (strftime('%s','now')-86400) AND (strftime('%s','now'))").groupBy("c.name")
-                    .parseList(object : MapRowParser<Pair<String, Double>> {
-                        override fun parseRow(columns: Map<String, Any?>): Pair<String, Double> {
+                    .parseList(object : MapRowParser<Pair<String, Long>> {
+                        override fun parseRow(columns: Map<String, Any?>): Pair<String, Long> {
                             val name = columns.getValue("name") as String
-                            val total = columns.getValue("Total") as Double
+                            val total = columns.getValue("Total") as Long
                             return Pair(name, total)
                         }
                     })

@@ -25,7 +25,7 @@ class ThirdStepFragment : Fragment() {
             adapter.setDropDownViewResource(R.layout.spinner_item)
             total_spent_spinner.adapter = adapter
 
-            total_spent_spinner.setSelection(0)  // TODO: Dude, we need to make something with this ugly Pairs and other, I think.
+            total_spent_spinner.setSelection(0)
             doAsync(executorService = MainActivity.dbExecutor) {
                 val dbSpending = DBManager().getSumSpendingByTime(DateTypes.DAY)
                 uiThread {
@@ -63,7 +63,7 @@ class ThirdStepFragment : Fragment() {
         }
     }
 
-    class TopSpentAdapter(private val inflater: LayoutInflater, private val data: List<Pair<String, Double>>) : BaseAdapter() {
+    class TopSpentAdapter(private val inflater: LayoutInflater, private val data: List<Pair<String, Long>>) : BaseAdapter() {
         override fun getItemId(position: Int): Long = position.toLong()
 
         override fun getCount(): Int = data.size
