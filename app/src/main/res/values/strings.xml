@@ -4,4 +4,21 @@
     <string name="accept_warning">OK</string>
     <string name="create_button_text">Create</string>
     <string name="negative_button_text">Cancel</string>
+    <string name="add_category">Add new category</string>
+    <string name="category_name_input">Enter name</string>
+    <string name="category_description_input">Enter description</string>
+    <string name="category_name">Slug</string>
+    <string name="category_description">Slug</string>
+    <string name="how_many_spend_text">How many I spend</string>
+    <string name="price_edit_box">enter price</string>
+    <string name="next_step_button">Next</string>
+    <string name="on_what_text">on what?</string>
+    <string name="spending_name">Slug</string>
+    <string name="spending_date">Slug</string>
+    <string name="spending_value">Slug</string>
+    <string name="you_spent">You spent</string>
+    <string name="you_spent_value">180</string>
+    <string name="other_spending_button">Make other spending</string>
+    <string name="statistics_button">Statistics</string>
+    <string name="category_total_spent">slug</string>
 </resources>

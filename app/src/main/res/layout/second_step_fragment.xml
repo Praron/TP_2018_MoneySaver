@@ -15,7 +15,7 @@
             android:id="@+id/on_what_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="on what?"
+            android:text="@string/on_what_text"
             android:textSize="32sp"
             android:textAlignment="center" />
 

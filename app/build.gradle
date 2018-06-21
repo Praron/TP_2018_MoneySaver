@@ -22,6 +22,12 @@ android {
     }
 }
 
+ext {
+    rxandroidVersion = '2.0.2'
+    retrofitVersion = '2.4.0'
+    ankoVersion = '0.10.5'
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
@@ -31,9 +37,14 @@ dependencies {
     implementation 'com.android.support:cardview-v7:27.1.1'
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.jjoe64:graphview:4.2.2'
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroidVersion"
+    implementation "io.reactivex.rxjava2:rxjava:$rxandroidVersion"
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    androidTestCompile 'com.android.support:support-annotations:27.1.1'
-    compile "org.jetbrains.anko:anko-sqlite:0.10.5"
+    androidTestImplementation 'com.android.support:support-annotations:27.1.1'
+    implementation "org.jetbrains.anko:anko-sqlite:$ankoVersion"
 }

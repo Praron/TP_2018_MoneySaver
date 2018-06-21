@@ -11,7 +11,7 @@
         android:id="@+id/how_many_spend_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="How many I spend"
+        android:text="@string/how_many_spend_text"
         android:textSize="32sp"
         android:textAlignment="center"/>
     <EditText
@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
-        android:hint="enter price"
+        android:hint="@string/price_edit_box"
         android:textSize="64sp"
         android:textAlignment="center"/>
     <Button
@@ -28,6 +28,6 @@
         android:layout_height="wrap_content"
         android:theme="@style/RaisedButton"
         android:textColor="@color/buttonTextColor"
-        android:text="Next"/>
+        android:text="@string/next_step_button"/>
 </LinearLayout>
 

@@ -4,4 +4,21 @@
     <string name="accept_warning">ОК</string>
     <string name="create_button_text">Создать</string>
     <string name="negative_button_text">Отменить</string>
+    <string name="add_category">Создать новую категорию</string>
+    <string name="category_name_input">Введите имя</string>
+    <string name="category_description_input">Введите описание</string>
+    <string name="category_name">Что-то</string>
+    <string name="category_description">Описание для чего-то</string>
+    <string name="how_many_spend_text">Как много я потратил</string>
+    <string name="price_edit_box">введите цену</string>
+    <string name="next_step_button">Дальше</string>
+    <string name="on_what_text">на что?</string>
+    <string name="spending_name">Что-то</string>
+    <string name="spending_date">Когда-то</string>
+    <string name="spending_value">Сколько-то</string>
+    <string name="you_spent">Вы потратили</string>
+    <string name="you_spent_value">180</string>
+    <string name="other_spending_button">Добавить другие траты</string>
+    <string name="statistics_button">Статистика</string>
+    <string name="category_total_spent">что-то</string>
 </resources>
