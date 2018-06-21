@@ -25,6 +25,7 @@ import org.jetbrains.anko.uiThread
 class SecondStepFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        //TODO: why can't i make this getAndShowCategoryList()? error: invoke virtual method addItemDecoration on a null ref
         return inflater.inflate(R.layout.second_step_fragment, container, false).apply {
             categories_recycler_view.apply {
                 addItemDecoration(DividerItemDecoration(activity!!.applicationContext, VERTICAL))
@@ -32,7 +33,7 @@ class SecondStepFragment : Fragment() {
                 doAsync(executorService = MainActivity.dbExecutor) {
                     val dbList = DBManager().getAllCategory()
                     uiThread {
-                        adapter = CategoryRecyclerAdapter(
+                        it.adapter = CategoryRecyclerAdapter(
                                 dbList
                                 , { clickedCategory ->
                             toast("${clickedCategory.name} clicked")
@@ -66,7 +67,7 @@ class SecondStepFragment : Fragment() {
             doAsync(executorService = MainActivity.dbExecutor) {
                 val dbList = DBManager().getAllCategory()
                 uiThread {
-                    adapter = CategoryRecyclerAdapter(
+                    it.adapter = CategoryRecyclerAdapter(
                             dbList
                             , { clickedCategory ->
                         toast("${clickedCategory.name} clicked")

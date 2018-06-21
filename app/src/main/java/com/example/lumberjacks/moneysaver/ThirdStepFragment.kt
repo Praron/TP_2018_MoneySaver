@@ -1,6 +1,5 @@
 package com.example.lumberjacks.moneysaver
 
-import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -10,7 +9,11 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.third_step_fragment.view.*
 import android.widget.ArrayAdapter
 import android.widget.BaseAdapter
+import com.example.lumberjacks.moneysaver.data.DBManager
+import com.example.lumberjacks.moneysaver.utils.DateTypes
 import kotlinx.android.synthetic.main.top_spending_list_item.view.*
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 
 
 class ThirdStepFragment : Fragment() {
@@ -18,14 +21,27 @@ class ThirdStepFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.third_step_fragment, container, false).apply {
             val adapter = ArrayAdapter(activity, R.layout.spinner_item,
-                    arrayListOf("this day", "this week", "this month", "this year"))
+                    R.id.spinner_item_text, resources.getStringArray(R.array.spinner_values))
             adapter.setDropDownViewResource(R.layout.spinner_item)
             total_spent_spinner.adapter = adapter
-            total_spent_spinner.setSelection(2)  // TODO: Dude, we need to make something with this ugly Pairs and other, I think.
-            // )
 
-            val data = arrayListOf(Pair("Food", 3200), Pair("Clothes", 1100), Pair("Electronics", 500), Pair("Other", 30))
-            top_spends_list.adapter = TopSpentAdapter(inflater, data)
+            total_spent_spinner.setSelection(0)  // TODO: Dude, we need to make something with this ugly Pairs and other, I think.
+            doAsync(executorService = MainActivity.dbExecutor) {
+                val dbSpending = DBManager().getSumSpendingByTime(DateTypes.DAY)
+                uiThread {
+                    total_spent.text = dbSpending.toInt().toString()
+                }
+            }
+
+            doAsync(executorService = MainActivity.dbExecutor) {
+                val dbSpending = DBManager().getAllSpendingByCategoryByTime(DateTypes.DAY)
+                uiThread {
+                    top_spends_list.adapter = TopSpentAdapter(inflater, dbSpending)
+                }
+            }
+
+//            val data = arrayListOf(Pair("Food", 3200), Pair("Clothes", 1100), Pair("Electronics", 500), Pair("Other", 30))
+//
 
             other_spending_button.setOnClickListener {
                 activity?.supportFragmentManager?.apply {
@@ -47,7 +63,7 @@ class ThirdStepFragment : Fragment() {
         }
     }
 
-    class TopSpentAdapter(private val inflater : LayoutInflater, private val data: ArrayList<Pair<String, Int>>) : BaseAdapter() {
+    class TopSpentAdapter(private val inflater: LayoutInflater, private val data: List<Pair<String, Double>>) : BaseAdapter() {
         override fun getItemId(position: Int): Long = position.toLong()
 
         override fun getCount(): Int = data.size

@@ -12,7 +12,7 @@ class DatabaseOpenHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MyDatabas
         @Synchronized
         fun getInstance(ctx: Context): DatabaseOpenHelper {
             if (instance == null) {
-                instance = DatabaseOpenHelper(ctx.getApplicationContext())
+                instance = DatabaseOpenHelper(ctx.applicationContext)
             }
             return instance!!
         }
@@ -23,7 +23,7 @@ class DatabaseOpenHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MyDatabas
                 "Spendings", true,
                 "id" to INTEGER + PRIMARY_KEY + UNIQUE,
                 "price" to INTEGER,
-                "date" to TEXT + DEFAULT("(datetime('now'))"),
+                "spend_datetime" to INTEGER + DEFAULT("(strftime('now'))"),
                 "category_id" to INTEGER
         )
         db.createTable("Categories", true,

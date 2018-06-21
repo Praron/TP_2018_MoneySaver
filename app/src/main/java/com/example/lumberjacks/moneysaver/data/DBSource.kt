@@ -11,8 +11,8 @@ interface DBSource {
 
     fun getAllCategory() : List<Category>
 
-    fun getAllSpendingByTime(byTime: DateTypes) : List<Spending>
+    fun getSumSpendingByTime(byTime: DateTypes) : Long
 
-    fun getAllSpendingByCategoryByTime(byTime: Int, byCategory: Category) : List<Spending>
+    fun getAllSpendingByCategoryByTime(byTime: DateTypes) : List<Pair<String, Double>>
 
 }

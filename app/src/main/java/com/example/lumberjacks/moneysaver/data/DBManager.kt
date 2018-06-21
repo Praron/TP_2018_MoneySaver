@@ -2,7 +2,6 @@ package com.example.lumberjacks.moneysaver.data
 
 import com.example.lumberjacks.moneysaver.Category
 import com.example.lumberjacks.moneysaver.MainActivity
-import com.example.lumberjacks.moneysaver.Spending
 import com.example.lumberjacks.moneysaver.utils.DateTypes
 import org.jetbrains.anko.db.MapRowParser
 import org.jetbrains.anko.db.insert
@@ -28,7 +27,7 @@ class DBManager(var dbHelper: DatabaseOpenHelper = DatabaseOpenHelper(MainActivi
     override fun saveSpendingInCategory(clickedCategory: Category, price: Int) : Boolean = dbHelper.use {
         val insertedResult = insert("Spendings",
                 "price" to price,
-                "date" to System.currentTimeMillis()/1000,
+                "spend_datetime" to System.currentTimeMillis()/1000,
                 "category_id" to clickedCategory.id
         )
         return@use insertedResult!= -1L
@@ -42,11 +41,26 @@ class DBManager(var dbHelper: DatabaseOpenHelper = DatabaseOpenHelper(MainActivi
         return@use insertedResult != -1L
     }
 
-    override fun getAllSpendingByTime(byTime: DateTypes): List<Spending> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getSumSpendingByTime(byTime: DateTypes): Long = dbHelper.use {
+        select("Spendings", "sum(price) AS 'Total Sum'")
+                .whereArgs("spend_datetime BETWEEN (strftime('%s','now')-86400) AND (strftime('%s','now'))")
+                .parseSingle(object : MapRowParser<Long>{
+                    override fun parseRow(columns: Map<String, Any?>): Long {
+                        return columns.getValue("Total Sum") as Long
+                    }
+                })
     }
 
-    override fun getAllSpendingByCategoryByTime(byTime: Int, byCategory: Category): List<Spending> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getAllSpendingByCategoryByTime(byTime: DateTypes): List<Pair<String, Double>> = dbHelper.use {
+            select("spendings as s join categories as c on (s.category_id = c.id)",
+                    "name, sum('price') as 'Total'")
+                    .whereArgs("spend_datetime BETWEEN (strftime('%s','now')-86400) AND (strftime('%s','now'))").groupBy("c.name")
+                    .parseList(object : MapRowParser<Pair<String, Double>> {
+                        override fun parseRow(columns: Map<String, Any?>): Pair<String, Double> {
+                            val name = columns.getValue("name") as String
+                            val total = columns.getValue("Total") as Double
+                            return Pair(name, total)
+                        }
+                    })
+        }
 }
