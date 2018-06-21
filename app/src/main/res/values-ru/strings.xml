@@ -17,8 +17,13 @@
     <string name="spending_date">Когда-то</string>
     <string name="spending_value">Сколько-то</string>
     <string name="you_spent">Вы потратили</string>
-    <string name="you_spent_value">180</string>
     <string name="other_spending_button">Добавить другие траты</string>
     <string name="statistics_button">Статистика</string>
     <string name="category_total_spent">что-то</string>
+    <string-array name="spinner_values">
+        <item name="spinner_day">сегодня</item>
+        <item name="spinner_week">за неделю</item>
+        <item name="spinner_month">за месяц</item>
+        <item name="spinner_year">за год</item>
+    </string-array>
 </resources>

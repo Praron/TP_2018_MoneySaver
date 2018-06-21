@@ -17,8 +17,13 @@
     <string name="spending_date">Slug</string>
     <string name="spending_value">Slug</string>
     <string name="you_spent">You spent</string>
-    <string name="you_spent_value">180</string>
     <string name="other_spending_button">Make other spending</string>
     <string name="statistics_button">Statistics</string>
     <string name="category_total_spent">slug</string>
+    <string-array name="spinner_values">
+        <item name="spinner_day">this day</item>
+        <item name="spinner_week">this week</item>
+        <item name="spinner_month">this month</item>
+        <item name="spinner_year">this year</item>
+    </string-array>
 </resources>

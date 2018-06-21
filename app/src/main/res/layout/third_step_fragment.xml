@@ -18,9 +18,9 @@
             android:textAlignment="center"
             android:textSize="40sp"/>
         <TextView
+            android:id="@+id/total_spent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/you_spent_value"
             android:textAlignment="center"
             android:textColor="#000"
             android:textSize="120sp"/>
